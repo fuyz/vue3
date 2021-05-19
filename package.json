@@ -1,19 +1,16 @@
 {
-  "name": "vue3",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "project1",
+  "version": "0.0.0",
+  "homepage": "https://fuyz.github.io/github-actions-demo",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fuyz/vue3.git"
+  "dependencies": {
+    "vue": "^3.0.4"
   },
-  "author": "fuyz",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fuyz/vue3/issues"
-  },
-  "homepage": "https://github.com/fuyz/vue3#readme"
+  "devDependencies": {
+    "vite": "^1.0.0-rc.13",
+    "@vue/compiler-sfc": "^3.0.4"
+  }
 }
