@@ -15,3 +15,15 @@ https://fuyz.github.io/vue3/
  #打包
  
 - npm run build
+
+## GitHub pages站点
+
+- [使用 Jekyll 创建 GitHub Pages 站点](https://docs.github.com/cn/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll)
+
+## github Action
+
+- [GitHub Actions 入门教程](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+
+- [什么是 GitHub Action 么？React项目实配](https://www.cnblogs.com/babycomeon/p/12771624.html)
+
+- 官方服务：https://github.com/actions
