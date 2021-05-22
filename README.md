@@ -2,18 +2,16 @@
 
 基于Vue3+vite框架，采用GitHub Action 实现自动构建、部署
 
-https://fuyz.github.io/vue3/
-
 ![image](https://user-images.githubusercontent.com/21302802/118791950-c4863880-b8c9-11eb-9f33-676479e94249.png)
 
 ## how to start
 
 ```
-
-$ npm init vite-app <project-name>
-$ cd <project-name>
-$ npm install
-$ npm run dev
+ #创建项目
+ npm init vite-app <project-name>
+ cd <project-name>
+ npm install
+ npm run dev
 
 
  #本地启动 
