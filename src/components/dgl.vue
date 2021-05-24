@@ -1,23 +1,37 @@
 <template>
-  <el-dialog title="提示" v-model="visible" width="30%" center>
+  <el-dialog title="提示" v-model="isShowDgl" width="800px" center @close="closeDgl">
     <div>
       <h2>弹框组件</h2>
       <h3>{{ title }}</h3>
-      <div>
-        <el-button type="primary" @click="add">{{ count }}</el-button>
-        <span>count的平方：{{ countPf }}</span>
-      </div>
-      <el-button type="primary" @confirm="confirm"></el-button>
+      <el-row :gutter="10">
+        <el-col :span="6">
+          <el-button type="primary" @click="add">{{ count }}</el-button>
+        </el-col>
+        <el-col :span="6">
+          <span>count的平方：{{ countPf }}</span>
+        </el-col>
+        <el-col :span="6">
+          <el-button type="primary" @click="minus">{{ number }}</el-button>
+        </el-col>
+      </el-row>
+
       <el-collapse>
-        <el-collapse-item title="dedineComponent" name="1">
-          <div>在使用组件的地方组件通过export default dedineComponent({options}) 的写法暴露出去，而不是Vue2的export default写法，以上报错组件的代码改为即可消除警告并实现功能。</div>
+        <el-collapse-item title="defineComponent" name="1">
+          <div>在使用组件的地方组件通过export default defineComponent({options}) 的写法暴露出去，而不是Vue2的export default写法，以上报错组件的代码改为即可消除警告并实现功能。</div>
         </el-collapse-item>
       </el-collapse>
+
+      <el-row :gutter="10">
+        <el-col :span="6">
+          <el-button type="primary" @click="confirm">emit fn</el-button>
+        </el-col>
+      </el-row>
+
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="visible = false">取 消</el-button>
-        <el-button type="primary" @click="visible = false">确 定</el-button>
+        <el-button @click="isShowDgl = false">取 消</el-button>
+        <el-button type="primary" @click="isShowDgl = false">确 定</el-button>
       </span>
     </template>
   </el-dialog>
@@ -31,15 +45,20 @@ import {
   onUnmounted,
   ref,
   watch,
-  dedineComponent,
+  defineComponent,
 } from "vue";
-export default dedineComponent({
+export default defineComponent({
   name: "Dgl",
-  setup(props, context) {
+  props: {
+    title: String,
+    visible: Boolean
+  },
+  emits: ['confirm', 'update:visible'],
+  setup (props, context) {
     console.log([props, context]);
-
+    let number = ref(100)
     const state = reactive({
-      visible: false,
+      isShowDgl: false,
       name: "fuyz",
       count: 0,
       countPf: 0,
@@ -48,12 +67,18 @@ export default dedineComponent({
       add: () => {
         state.count++;
       },
-      confirm: () => {
-        context.$emit("confirm", "i am from dgl component");
+      minus () {
+        number.value += 20
       },
+      confirm: () => {
+        context.emit("confirm", "i am from dgl component");
+      },
+      closeDgl () {
+        context.emit('update:visible', false)
+      }
     };
     watch(
-      count,
+      () => state.count,
       (val, oldVal) => {
         state.countPf = val * val;
       },
@@ -62,14 +87,26 @@ export default dedineComponent({
         deep: true,
       }
     );
+    watch(
+      () => props.visible,
+      (val, oldVal) => {
+        state.isShowDgl = val
+      },
+      {
+        immediate: true,
+      }
+    );
     //页面加载完成
-    onMounted(() => {});
+    onMounted(() => {
+      console.log('onMounted')
+    });
     //销毁
-    onUnmounted(() => {});
+    onUnmounted(() => { });
 
     return {
       ...toRefs(state),
       ...methods,
+      number
     };
   },
 });
