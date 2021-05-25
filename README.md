@@ -29,13 +29,10 @@
     <b>组件定义</b>
     <pre>
      v2: export default {}
-     v3: export default defineComponent({})
-    </pre>
-     <b>
+     v3: export default defineComponent({})</pre>
+     <p>
       在 Vue 3 的 Composition API 中，采用了 setup() 作为组件的入口函数。
-      在结合了 TypeScript 的情况下，传统的 Vue.extend 等定义方法无法对此类组件给出正确的参数类型推断，这就需要引入 defineComponent() 组件包装函数，其在 rfc 文档中的说明为：<a href="https://composition-api.vuejs.org/api.html#setup">文档说明</a>
-      
-     </b>
+      在结合了 TypeScript 的情况下，传统的 Vue.extend 等定义方法无法对此类组件给出正确的参数类型推断，这就需要引入 defineComponent() 组件包装函数，其在 rfc 文档中的说明为：<a href="https://composition-api.vuejs.org/api.html#setup">文档说明</a></p>
     </li>
     <li>
      <b>组件封装：emit方法使用前需要先注册</b>
