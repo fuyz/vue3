@@ -12,19 +12,21 @@
       </pre>
     </el-col>
   </el-row>
-  <Dgl v-model:visible="isShowDgl" :title="title" @confirm="confirmFn"></Dgl>
+  <Dgl v-if="isShowDgl" v-model:visible="isShowDgl" :title="title" @confirm="confirmFn"></Dgl>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Dgl from "./components/dgl.vue"
+import { defineComponent, reactive, defineAsyncComponent, toRefs, ref, onMounted, onUnmounted, onUpdated, onBeforeUpdate, onActivated, onDeactivated } from 'vue'
 
-export default {
+import HelloWorld from "./components/HelloWorld.vue";
+// import Dgl from "./components/dgl.vue"
+
+export default defineComponent({
   name: "App",
   components: {
     HelloWorld,
-    // Dgl: () => import("./components/dgl.vue"), //Invalid VNode type: undefined (undefined)
-    Dgl
+    Dgl: defineAsyncComponent(() => import("./components/dgl.vue")), //Invalid VNode type: undefined (undefined)
+    // Dgl
   },
   data () {
     return {
@@ -37,5 +39,5 @@ export default {
       this.$message.success(params);
     },
   },
-};
+})
 </script>

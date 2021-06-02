@@ -12,6 +12,7 @@
         </el-col>
         <el-col :span="6">
           <el-button type="primary" @click="minus">{{ number }}</el-button>
+          <p>number.value:{{ number.value }}</p>
         </el-col>
       </el-row>
 
@@ -36,7 +37,7 @@
     </template>
   </el-dialog>
 </template>
-<script>
+<script lang="ts">
 import {
   reactive,
   toRefs,
@@ -45,6 +46,7 @@ import {
   onUnmounted,
   ref,
   watch,
+  watchEffect,
   defineComponent,
 } from "vue";
 export default defineComponent({
@@ -55,8 +57,18 @@ export default defineComponent({
   },
   emits: ['confirm', 'update:visible'],
   setup (props, context) {
+    console.log('setup')
     console.log([props, context]);
-    let number = ref(100)
+    const number = ref<number>(100)
+    // setInterval(() => {
+    //   number.value++
+    // }, 1000)
+
+    watchEffect(() => {
+      console.log(number)
+    })
+    const cupsArr = ref([])
+    console.log(cupsArr, cupsArr.value)
     const state = reactive({
       isShowDgl: false,
       name: "fuyz",
@@ -66,6 +78,8 @@ export default defineComponent({
     const methods = {
       add: () => {
         state.count++;
+        cupsArr.value.push('a')
+        console.log(state)watch
       },
       minus () {
         number.value += 20
@@ -101,13 +115,24 @@ export default defineComponent({
       console.log('onMounted')
     });
     //销毁
-    onUnmounted(() => { });
+    onUnmounted(() => {
+      console.log('unonMounted')
+    });
 
     return {
       ...toRefs(state),
+      // ...state,
       ...methods,
-      number
+      number,
+      cupsArr
     };
   },
+
+  beforeCreate () {
+    console.log('----beforeCreate----')
+  },
+  created () {
+    console.log('----created----')
+  }
 });
 </script>
