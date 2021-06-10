@@ -53,7 +53,7 @@
       <b>html元素ref对象</b>
       <pre>
         html:
-        <el-form ref="formRef" :model="formData" inline label-width="0px" size="small">
+        <!-- <el-form ref="formRef" :model="formData" inline label-width="0px" size="small"></el-form> -->
         js: 定义和调用
         const formRef: Ref = ref(null)
         formRef.value.resetFields()
@@ -63,7 +63,7 @@
       <b>动态定义的ref: getCurrentInstance</b>
       <pre>
         html:
-        <TabTable v-if="activeTab === item.platform" :ref="item.platform+'Ref'" :permissionTreeData="item.permissionTreeData" :platformType="item.platform" :disabled="false"></TabTable>
+        <!-- <TabTable v-if="activeTab === item.platform" :ref="item.platform+'Ref'" :permissionTreeData="item.permissionTreeData" :platformType="item.platform" :disabled="false"></TabTable> -->
         js:
         import { getCurrentInstance } from 'vue'
         const currentInstance: any = getCurrentInstance()
@@ -76,7 +76,7 @@
       <b>html元素ref对象</b>
       <pre>
         html:
-        <el-form ref="formRef" :model="formData" inline label-width="0px" size="small">
+        <!-- <el-form ref="formRef" :model="formData" inline label-width="0px" size="small"></el-form> -->
         js: 定义和调用
         const formRef: Ref = ref(null)
         formRef.value.resetFields()
