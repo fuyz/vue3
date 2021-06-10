@@ -79,7 +79,7 @@ export default defineComponent({
       add: () => {
         state.count++;
         cupsArr.value.push('a')
-        console.log(state)watch
+        console.log(state)
       },
       minus () {
         number.value += 20
